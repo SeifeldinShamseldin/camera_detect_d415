@@ -59,7 +59,29 @@ pip install scikit-image>=0.18.0
 - **Linux** (Ubuntu 18.04+) or **Windows 10+**
 - **OpenCV** with xfeatures2d (for SIFT/SURF)
 
-## 🛠️ Installation
+## 🛠️ Installation & Running
+
+### Option 1: Docker (Recommended - Works on Any OS)
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/SeifeldinShamseldin/camera_detect_d415.git
+cd camera_detect_d415
+```
+
+2. **Run with Docker (Cross-Platform)**
+```bash
+# Linux/macOS
+./run.sh
+
+# Windows
+run.bat
+
+# Or manually with docker-compose
+docker-compose up
+```
+
+### Option 2: Native Installation
 
 1. **Clone the repository**
 ```bash
@@ -80,8 +102,21 @@ rs-enumerate-devices
 
 4. **Run the detection system**
 ```bash
+# Main application
+python3 main.py
+
+# Or advanced detection demo
 python3 test_robust_detection.py
 ```
+
+### Docker Benefits
+✅ **Cross-Platform**: Works on Windows, macOS, and Linux  
+✅ **No Dependencies**: All libraries pre-installed  
+✅ **GUI Support**: X11 forwarding included  
+✅ **Camera Access**: USB device passthrough configured  
+✅ **GPU Support**: Optional NVIDIA acceleration  
+
+See [DOCKER_SETUP.md](DOCKER_SETUP.md) for detailed Docker installation guide.
 
 ## 🎯 Usage Guide
 
@@ -89,7 +124,13 @@ python3 test_robust_detection.py
 
 1. **Start the system**
 ```bash
-python3 test_robust_detection.py
+# Docker (recommended)
+./run.sh                        # Linux/macOS
+run.bat                         # Windows
+
+# Native installation
+python3 main.py                 # Basic camera view
+python3 test_robust_detection.py # Advanced detection
 ```
 
 2. **Create templates**
@@ -171,7 +212,8 @@ self.smoothing_factor = 0.3       # Temporal smoothing (0.1-0.5)
 
 ```
 camera_detect_d415/
-├── test_robust_detection.py    # Main detection system
+├── main.py                     # Main application entry point
+├── test_robust_detection.py    # Advanced detection demo
 ├── robust_templates/           # Template storage directory
 │   └── template_name/
 │       ├── rgb.jpg            # RGB template image
@@ -181,8 +223,13 @@ camera_detect_d415/
 │       ├── pose_centroid.npy  # 6D pose reference
 │       ├── pose_pointcloud.npy # Pose point cloud
 │       └── features.json      # Feature descriptors
-├── README.md                  # This documentation
-└── requirements.txt           # Python dependencies
+├── Dockerfile                 # Docker container definition
+├── docker-compose.yml         # Docker orchestration
+├── run.sh                     # Linux/macOS startup script
+├── run.bat                    # Windows startup script
+├── DOCKER_SETUP.md           # Docker installation guide
+├── requirements.txt          # Python dependencies
+└── README.md                 # This documentation
 ```
 
 ## 🔧 Troubleshooting

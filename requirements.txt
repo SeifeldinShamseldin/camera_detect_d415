@@ -1,14 +1,73 @@
-# Core Computer Vision Dependencies
-opencv-python>=4.5.0
-opencv-contrib-python>=4.5.0
-numpy>=1.20.0
+# Intel RealSense SDK
+pyrealsense2==2.54.2
 
-# Intel RealSense Camera Support
-pyrealsense2>=2.50.0
+# Computer Vision
+opencv-python==4.8.1.78
+opencv-contrib-python==4.8.1.78
 
-# Advanced Feature Processing (Optional)
-scipy>=1.7.0
-scikit-image>=0.18.0
+# Deep Learning Frameworks
+torch==2.1.0
+torchvision==0.16.0
+torchaudio==2.1.0
+ultralytics==8.0.200
 
-# Utility Libraries
-pathlib2>=2.3.0
+# Image Processing
+Pillow==10.0.1
+scikit-image==0.21.0
+imageio==2.31.5
+
+# Numerical Computing
+numpy==1.24.4
+scipy==1.11.3
+
+# 3D Processing
+open3d==0.17.0
+trimesh==3.23.5
+
+# Math and Geometry
+transforms3d==0.4.1
+pyquaternion==0.9.9
+
+# Data Handling
+pandas==2.1.1
+h5py==3.9.0
+
+# Visualization
+matplotlib==3.7.2
+seaborn==0.12.2
+plotly==5.17.0
+
+# Web Framework (for API)
+fastapi==0.103.2
+uvicorn==0.23.2
+pydantic==2.4.2
+
+# Configuration Management
+pyyaml==6.0.1
+configparser==6.0.0
+
+# Logging and Monitoring
+loguru==0.7.2
+tqdm==4.66.1
+
+# Testing
+pytest==7.4.2
+pytest-cov==4.1.0
+
+# Development Tools
+black==23.9.1
+flake8==6.1.0
+mypy==1.6.0
+
+# Performance Profiling
+psutil==5.9.5
+memory-profiler==0.61.0
+
+# Async Processing
+asyncio-mqtt==0.16.1
+aiofiles==23.2.1
+
+# Utilities
+click==8.1.7
+python-dotenv==1.0.0
+requests==2.31.0

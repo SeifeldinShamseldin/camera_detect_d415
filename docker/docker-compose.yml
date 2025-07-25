@@ -1,0 +1,88 @@
+version: '3.8'
+
+services:
+  camera-detection:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: realsense-d415-detection
+    
+    # GPU support (uncomment if NVIDIA GPU available)
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+    
+    # USB device access for RealSense camera
+    devices:
+      - /dev/bus/usb:/dev/bus/usb
+    
+    # Privileged mode for camera access
+    privileged: true
+    
+    # Network mode for display forwarding
+    network_mode: host
+    
+    # Environment variables
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - XAUTHORITY=/tmp/.docker.xauth
+    
+    # Volume mounts
+    volumes:
+      # X11 display forwarding
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /tmp/.docker.xauth:/tmp/.docker.xauth:rw
+      # Data persistence
+      - ../data:/app/data
+      - ../logs:/app/logs
+      - ../models:/app/models
+      # Configuration files
+      - ../config:/app/config
+    
+    # Port mapping
+    ports:
+      - "8080:8080"
+    
+    # Restart policy
+    restart: unless-stopped
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import pyrealsense2 as rs; print('RealSense OK')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Web interface service
+  web-interface:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: camera-web-interface
+    ports:
+      - "3000:3000"
+    depends_on:
+      - camera-detection
+    environment:
+      - API_URL=http://camera-detection:8080
+    restart: unless-stopped
+    profiles:
+      - web
+
+# Optional: Shared network for services
+networks:
+  camera-network:
+    driver: bridge
+
+# Persistent volumes
+volumes:
+  camera-data:
+    driver: local
+  camera-models:
+    driver: local

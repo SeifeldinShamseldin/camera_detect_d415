@@ -1,0 +1,8 @@
+# Essential dependencies for basic camera operation
+pyrealsense2
+opencv-python
+numpy
+loguru
+matplotlib
+Pillow
+scipy
