@@ -223,7 +223,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Seifeddin Shamseldin**
 - GitHub: [@SeifeldinShamseldin](https://github.com/SeifeldinShamseldin)
-- Email: seifeddin.shamseldin@example.com
+
 
 ## 🙏 Acknowledgments
 
