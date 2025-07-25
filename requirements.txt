@@ -1,0 +1,14 @@
+# Core Computer Vision Dependencies
+opencv-python>=4.5.0
+opencv-contrib-python>=4.5.0
+numpy>=1.20.0
+
+# Intel RealSense Camera Support
+pyrealsense2>=2.50.0
+
+# Advanced Feature Processing (Optional)
+scipy>=1.7.0
+scikit-image>=0.18.0
+
+# Utility Libraries
+pathlib2>=2.3.0
